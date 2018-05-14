@@ -12,22 +12,33 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-galaxy_info:
-  author: Andy Smith
-  description: This role installs and configures the qpid-dispatch-router
-  license: Apache
-  min_ansible_version: 2.3
-  platforms:
-  - name: EL
-    versions:
-    - 7
-  - name: Ubuntu
-    versions:
-    - trusty
-    - xenial
-  categories:
-  - messaging
-  - cloud
-  - openstack
 
-dependencies: []
+- name: Create the local directories
+  file:
+    path: "/etc/qpid-dispatch/"
+    state: "directory"
+    group: "root"
+    owner: "root"
+    mode: "0755"
+  tags:
+    - qdrouterd-config
+
+- name: Create the log directory
+  file:
+    path: "/var/lib/qdrouterd/"
+    state: "directory"
+    group: "qdrouterd"
+    owner: "qdrouterd"
+    recurse: true
+  tags:
+    - qdrouterd-config
+
+- name: Create the log directory
+  file:
+    path: "/var/log/qdrouterd/"
+    state: "directory"
+    group: "qdrouterd"
+    owner: "qdrouterd"
+    recurse: true
+  tags:
+    - qdrouterd-config

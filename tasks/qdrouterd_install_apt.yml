@@ -12,22 +12,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-galaxy_info:
-  author: Andy Smith
-  description: This role installs and configures the qpid-dispatch-router
-  license: Apache
-  min_ansible_version: 2.3
-  platforms:
-  - name: EL
-    versions:
-    - 7
-  - name: Ubuntu
-    versions:
-    - trusty
-    - xenial
-  categories:
-  - messaging
-  - cloud
-  - openstack
 
-dependencies: []
+- name: Install Qpid Dispatch Router (qdrouterd) packages
+  apt:
+    name: "{{ qdrouterd_distro_packages }}"
+    state: "{{ qdrouterd_server_package_state }}"
+  register: install_qdrouterd
+  tags:
+    - qdrouterd-apt-packages

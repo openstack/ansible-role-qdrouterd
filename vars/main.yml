@@ -1,2 +1,3 @@
 ---
 # vars file for ansible-qdrouterd
+qdrouterd_port: 5672

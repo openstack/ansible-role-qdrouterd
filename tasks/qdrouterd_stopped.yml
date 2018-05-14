@@ -12,22 +12,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-galaxy_info:
-  author: Andy Smith
-  description: This role installs and configures the qpid-dispatch-router
-  license: Apache
-  min_ansible_version: 2.3
-  platforms:
-  - name: EL
-    versions:
-    - 7
-  - name: Ubuntu
-    versions:
-    - trusty
-    - xenial
-  categories:
-  - messaging
-  - cloud
-  - openstack
 
-dependencies: []
+- name: Ensure Qpid Dispatch Router is stopped
+  service:
+    name: "{{ qdrouterd_service_name }}"
+    state: stopped
+  failed_when: false
+  tags:
+    - qdrouterd-server-stopped
+    - qdrouterd-upgrade
+    - qdrouterd-stop

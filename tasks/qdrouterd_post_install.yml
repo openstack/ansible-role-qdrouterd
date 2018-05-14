@@ -13,22 +13,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Gather variables for each operating system
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
-    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
-    - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
-    - "{{ ansible_distribution | lower }}.yml"
-    - "{{ ansible_os_family | lower }}.yml"
+- name: Create qdrouterd config
+  register: qdrouterd_config_changed
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ qdrouterd_service_name }}"
+    mode: "0600"
+  with_items:
+    - { src: "qdrouterd.conf.j2", dest: "{{ qdrouterd_etc_conf_file }}" }
+    - { src: "qdrouterd-sasl.conf.j2", dest: "{{ qdrouterd_sasl_conf_file }}" }
   tags:
-    - always
+    - qdrouterd-config
 
-- include: qdrouterd_pre_install.yml
-
-- include: qdrouterd_install.yml
+- include: qdrouterd_restart.yml
   static: no
-
-- include: qdrouterd_post_install.yml
-
-
+  when: qdrouterd_config_changed|changed
