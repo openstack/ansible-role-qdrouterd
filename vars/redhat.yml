@@ -20,10 +20,9 @@ qdrouterd_distro_packages:
   - qpid-dispatch-router
   - qpid-dispatch-tools
 
-qdrouterd_package_state: "latest"
-qdrouterd_etc_conf_file: "/etc/qpid-dispatch/qdrouterd.conf"
-qdrouterd_sasl_conf_file: "/etc/sasl2/qdrouterd.conf"
-qdrouterd_service_name: "qdrouterd"
+_qdrouterd_etc_conf_path: "/etc/qpid-dispatch/"
+_qdrouterd_etc_conf_file: "/etc/qpid-dispatch/qdrouterd.conf"
+_qdrouterd_service_name: "qdrouterd"
 
 epel_repo_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
 epel_repo_gpg_key_url: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"

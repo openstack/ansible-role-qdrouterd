@@ -1,18 +1,27 @@
 
 router {
-    mode: standalone
-    id: Router.A
-    workerThreads: 4
-    saslConfigPath: /etc/sasl2
-    saslConfigName: qdrouterd
+    mode: {{ qdrouterd_mode }}
+    id: {{ ansible_hostname }}
+    workerThreads: {{ qdrouterd_host_count }}
+    saslConfigPath: {{ qdrouterd_sasl_conf_path }}
+    saslConfigName: {{ qdrouterd_service_name }}
 }
 
 listener {
-    host: {{ ansible_hostname }}
-    port: {{ qdrouterd_port }}
+    host: {{ qdrouterd_listener_addr }}
+    port: {{ qdrouterd_listener_port }}
     role: normal
-    authenticatePeer: no
+    authenticatePeer: {{ qdrouterd_listener_auth_peer }}
+    saslMechanisms: {{ qdrouterd_listener_sasl_mech }}
 }
+
+{% if qdrouterd_host_count > '1' %}
+listener {
+    host: {{ qdrouterd_irl_addr }}
+    port: {{ qdrouterd_irl_port }}
+    role: inter-router
+}
+{% endif %}
 
 address {
     prefix: unicast
@@ -52,7 +61,8 @@ address {
 }
 
 log {
-    module: DEFAULT
-    enable: info+
-    output: /var/log/qdrouterd/qdrouterd.log
+    module: {{ qdrouterd_log_module }}
+    enable: {{ qdrouterd_log_enable }}
+    timestamp: true
+    output: {{ qdrouterd_log_file }}
 }

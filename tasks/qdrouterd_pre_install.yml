@@ -12,10 +12,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+   
 - name: Create the local directories
   file:
-    path: "/etc/qpid-dispatch/"
+    path: "{{ qdrouterd_etc_conf_path }}"
     state: "directory"
     group: "root"
     owner: "root"
@@ -23,22 +23,4 @@
   tags:
     - qdrouterd-config
 
-- name: Create the log directory
-  file:
-    path: "/var/lib/qdrouterd/"
-    state: "directory"
-    group: "qdrouterd"
-    owner: "qdrouterd"
-    recurse: true
-  tags:
-    - qdrouterd-config
 
-- name: Create the log directory
-  file:
-    path: "/var/log/qdrouterd/"
-    state: "directory"
-    group: "qdrouterd"
-    owner: "qdrouterd"
-    recurse: true
-  tags:
-    - qdrouterd-config
