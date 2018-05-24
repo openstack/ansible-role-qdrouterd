@@ -2,7 +2,7 @@
 router {
     mode: {{ qdrouterd_mode }}
     id: {{ ansible_hostname }}
-    workerThreads: {{ qdrouterd_host_count }}
+    workerThreads: {{ qdrouterd_worker_threads }}
     saslConfigPath: {{ qdrouterd_sasl_conf_path }}
     saslConfigName: {{ qdrouterd_service_name }}
 }
@@ -22,6 +22,16 @@ listener {
     role: inter-router
 }
 {% endif %}
+
+{% for router in groups['qdrouterd_all'] %}
+{% if inventory_hostname < router %}
+connector {
+    host: {{ hostvars[router]['ansible_eth0']['ipv4']['address'] }}
+    role: inter-router
+    port: {{ qdrouterd_irl_port }}
+}
+{% endif %}
+{% endfor %}
 
 address {
     prefix: unicast
