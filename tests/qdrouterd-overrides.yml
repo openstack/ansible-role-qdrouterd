@@ -1,0 +1,2 @@
+qdrouterd_ssl_cert: /etc/qpid-dispatch/ssl/qdrouterd.pem
+qdrouterd_ssl_key: /etc/qpid-dispatch/ssl/qdrouterd.key

@@ -13,11 +13,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Setup the host
-- include: common/test-setup-host.yml
+- name: Gather facts
+  hosts: "all"
+  user: root
+  gather_facts: true
 
-# Install previous version qdrouterd server
-- include: common/test-install-qdrouterd.yml
-
-# Run functional tests
-- include: test-qdrouterd-server-functional.yml
+# Install previous version
+- name: Deploy previous qdrouterd version
+  hosts: qdrouterd_all
+  user: root
+  serial: 1
+  any_errors_fatal: true
+  gather_facts: true
+  roles:
+    - role: "previous_qdrouterd_server"
+  vars_files:
+    - common/previous/test-vars.yml

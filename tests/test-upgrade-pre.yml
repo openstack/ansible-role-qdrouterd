@@ -1,5 +1,5 @@
 ---
-# Copyright 2018, Red Hat, Inc.
+# Copyright 2015, Rackspace US, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,3 @@
 
 # Setup the host
 - include: common/test-setup-host.yml
-
-# Install previous version qdrouterd server
-- include: common/test-install-qdrouterd.yml
-
-# Run functional tests
-- include: test-qdrouterd-server-functional.yml

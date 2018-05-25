@@ -13,11 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Setup the host
-- include: common/test-setup-host.yml
-
-# Install previous version qdrouterd server
+# Install Qdrouterd server
 - include: common/test-install-qdrouterd.yml
 
 # Run functional tests
-- include: test-qdrouterd-server-functional.yml
+- include: test-qdrouterd-functional.yml

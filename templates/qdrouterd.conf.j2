@@ -7,6 +7,17 @@ router {
     saslConfigName: {{ qdrouterd_service_name }}
 }
 
+{% if qdrouterd_require_ssl == 'yes' %}
+sslProfile {
+    name: {{ ansible_hostname }}
+{% if qdrouterd_ssl_ca_cert is defined %}
+    certDb: {{ qdrouterd_ssl_ca_cert }}
+{% endif %}
+    certFile: {{ qdrouterd_ssl_cert }}
+    keyFile: {{ qdrouterd_ssl_key }}
+}
+{% endif %}
+
 listener {
     host: {{ qdrouterd_listener_addr }}
     port: {{ qdrouterd_listener_port }}
