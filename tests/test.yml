@@ -20,4 +20,4 @@
 - include: common/test-install-qdrouterd.yml
 
 # Run functional tests
-- include: test-qdrouterd-server-functional.yml
+- include: test-qdrouterd-functional.yml
