@@ -13,17 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-qdrouterd_distro_packages:
-  - python-qpid-proton
-  - cyrus-sasl-lib
-  - cyrus-sasl-plain
-  - qpid-dispatch-router
-  - qpid-dispatch-tools
+- name: Store ssl cert
+  slurp:
+    src: "{{ qdrouterd_ssl_cert }}"
+  register: _qdrouterd_ssl_cert
+  changed_when: false
+  tags:
+    - qdrouterd-ssl
 
-_qdrouterd_etc_conf_path: "/etc/qpid-dispatch"
-_qdrouterd_etc_conf_file: "/etc/qpid-dispatch/qdrouterd.conf"
-_qdrouterd_service_name: "qdrouterd"
+- name: Store ssl key
+  slurp:
+    src: "{{ qdrouterd_ssl_key }}"
+  register: _qdrouterd_ssl_key
+  changed_when: false
+  tags:
+    - qdrouterd-ssl
 
-epel_repo_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
-epel_repo_gpg_key_url: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
-epel_repofile_path: "/etc/yum.repos.d/epel.repo"
+- name: Register a fact for the cert and key
+  set_fact:
+     qdrouterd_ssl_cert_fact: "{{ _qdrouterd_ssl_cert.content }}"
+     qdrouterd_ssl_key_fact: "{{ _qdrouterd_ssl_key.content }}"
+  tags:
+    - qdrouterd-ssl

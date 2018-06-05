@@ -22,6 +22,9 @@ listener {
     host: {{ qdrouterd_listener_addr }}
     port: {{ qdrouterd_listener_port }}
     role: normal
+{% if qdrouterd_require_ssl == 'yes' %}
+    sslProfile: {{ ansible_hostname }}
+{% endif %}
     authenticatePeer: {{ qdrouterd_listener_auth_peer }}
     saslMechanisms: {{ qdrouterd_listener_sasl_mech }}
 }
@@ -31,6 +34,9 @@ listener {
     host: {{ qdrouterd_irl_addr }}
     port: {{ qdrouterd_irl_port }}
     role: inter-router
+{% if qdrouterd_require_ssl == 'yes' %}
+    sslProfile: {{ ansible_hostname }}
+{% endif %}
 }
 {% endif %}
 
