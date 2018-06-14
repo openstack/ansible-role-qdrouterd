@@ -37,6 +37,8 @@ listener {
 {% if qdrouterd_require_ssl == 'yes' %}
     sslProfile: {{ ansible_hostname }}
 {% endif %}
+    authenticatePeer: {{ qdrouterd_irl_auth_peer }}
+    saslMechanisms: {{ qdrouterd_irl_sasl_mech }}
 }
 {% endif %}
 

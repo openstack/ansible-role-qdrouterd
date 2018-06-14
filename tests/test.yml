@@ -17,7 +17,7 @@
 - include: common/test-setup-host.yml
 
 # Install previous version qdrouterd server
-- include: common/test-install-qdrouterd.yml
+- include: test-install-qdrouterd.yml
 
 # Run functional tests
 - include: test-qdrouterd-functional.yml

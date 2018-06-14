@@ -41,7 +41,7 @@
 
     - name: Open qdrouterd.conf
       slurp:
-        src: "{{ qdrouterd_etc_conf_file }}"
+        src: "{{ _qdrouterd_etc_conf_file }}"
       register: qdrouterd_config
 
     - name: Read qdrouterd_ssl_cert
@@ -72,10 +72,19 @@
 
     - name: Print qdrouterd_statistics
       debug:
-        var: qdrotuerd_statistics
+        var: qdrouterd_statistics
+
+    - name: Get qdrouterd node view
+      command: "qdstat -nv -b 0.0.0.0:31459"
+      register: qdrouterd_nv
+      changed_when: false
+
+    - name: Print qdrouterd_nv
+      debug:
+        var: qdrouterd_nv
 
     - name: Ensure SSL cert/key checksums are identical across the mesh
       assert:
         that:
-          - hostvars['container1']['qdrotuerd_ssl_cert_checksum'] == hostvars['container2']['qdrouterd_ssl_cert_checksum'] == hostvars['container3']['qdrouterd_ssl_cert_checksum']
+          - hostvars['container1']['qdrouterd_ssl_cert_checksum'] == hostvars['container2']['qdrouterd_ssl_cert_checksum'] == hostvars['container3']['qdrouterd_ssl_cert_checksum']
           - hostvars['container1']['qdrouterd_ssl_key_checksum'] == hostvars['container2']['qdrouterd_ssl_key_checksum'] == hostvars['container3']['qdrouterd_ssl_key_checksum']

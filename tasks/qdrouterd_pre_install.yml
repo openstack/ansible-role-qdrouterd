@@ -12,10 +12,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-   
-- name: Create the local directories
+
+- name: Create the local config directory
   file:
     path: "{{ qdrouterd_etc_conf_path }}"
+    state: "directory"
+    group: "root"
+    owner: "root"
+    mode: "0755"
+  tags:
+    - qdrouterd-config
+
+- name: Create the config ssl directory
+  file:
+    path: "{{ qdrouterd_etc_conf_path }}/ssl"
     state: "directory"
     group: "root"
     owner: "root"

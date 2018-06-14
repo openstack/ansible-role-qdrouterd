@@ -1,4 +1,5 @@
 [gerrit]
 host=review.openstack.org
 port=29418
-project=openstack/openstack-ansible.git
+project=openstack/ansible-role-qdrouterd.git
+defaultbranch=master

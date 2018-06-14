@@ -15,15 +15,17 @@
 
 qdrouterd_distro_packages:
   - python-qpid-proton
+  - libsasl2-modules
   - sasl2-bin
-  - libpython-2.2
   - qdrouterd
+  - qdmanage
+  - qdstat
 
-qdrouterd_package_name: "qdrouterd"
+_qdrouterd_etc_conf_path: "/etc/qpid-dispatch"
+_qdrouterd_etc_conf_file: "/etc/qpid-dispatch/qdrouterd.conf"
 qdrouterd_service_name: "qdrouterd"
-qdrouterd_etc_conf_file: "/etc/qpid-dispatch/qdrouterd.conf"
 
 # repo details for qpid ppa
 qdrouterd_ppa_repo: "ppa:qpid/released"
-qdrouterd_ppa_keyid: 4096R/4D8EB5FDA37AB55F41A135203BF88A0C6A770882
+qdrouterd_ppa_keyid: 6A770882
 qdrouterd_ppa_keyserver: "keyserver.ubuntu.com"

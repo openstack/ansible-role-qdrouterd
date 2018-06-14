@@ -26,6 +26,9 @@
 
 - include: qdrouterd_pre_install.yml
 
+- include: qdrouterd_install.yml
+  static: no
+
 # Qdrouterd SSL/TLS listener configuration
 #
 # If the user has not specified a certificate, key and CA certificate, we will
@@ -47,9 +50,6 @@
 - include: qdrouterd_ssl_user_provided.yml
   tags:
     - qdrouterd-config
-
-- include: qdrouterd_install.yml
-  static: no
 
 - include: qdrouterd_post_install.yml
 

@@ -35,6 +35,8 @@ qdrouterd_listener_auth_peer: "no"
 qdrouterd_listener_sasl_mech: "ANONYMOUS"
 qdrouterd_irl_addr: 0.0.0.0
 qdrouterd_irl_port: 31460
+qdrouterd_irl_auth_peer: "no"
+qdrouterd_irl_sasl_mech: "ANONYMOUS"
 qdrouterd_worker_threads: 4
 qdrouterd_sasl_conf_path: "/etc/sasl2"
 qdrouterd_sasl_conf_file: "/etc/sasl2/qdrouterd.conf"
