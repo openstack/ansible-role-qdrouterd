@@ -14,9 +14,11 @@
 # limitations under the License.
 
 qdrouterd_distro_packages:
+  - openssl
   - python-qpid-proton
   - cyrus-sasl-lib
   - cyrus-sasl-plain
+  - cyrus-sasl-md5
   - qpid-dispatch-router
   - qpid-dispatch-tools
 

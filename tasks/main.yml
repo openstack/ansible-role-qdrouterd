@@ -24,10 +24,9 @@
   tags:
     - always
 
-- include: qdrouterd_pre_install.yml
+- import_tasks: qdrouterd_pre_install.yml
 
-- include: qdrouterd_install.yml
-  static: no
+- import_tasks: qdrouterd_install.yml
 
 # Qdrouterd SSL/TLS listener configuration
 #
@@ -39,18 +38,17 @@
 #
 #   playbooks/roles/qdrouterd/defaults/main.yml
 #
-- include: qdrouterd_ssl_self_signed.yml
-  static: no
+- include_tasks: qdrouterd_ssl_self_signed.yml
   when: >
     qdrouterd_user_ssl_cert is not defined or
     qdrouterd_user_ssl_key is not defined
   tags:
     - qdrouterd-config
 
-- include: qdrouterd_ssl_user_provided.yml
+- import_tasks: qdrouterd_ssl_user_provided.yml
   tags:
     - qdrouterd-config
 
-- include: qdrouterd_post_install.yml
-
-
+- import_tasks: qdrouterd_post_install.yml
+  tags:
+    - qdrouterd-config

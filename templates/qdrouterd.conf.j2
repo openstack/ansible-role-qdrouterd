@@ -7,7 +7,6 @@ router {
     saslConfigName: {{ qdrouterd_service_name }}
 }
 
-{% if qdrouterd_require_ssl == 'yes' %}
 sslProfile {
     name: {{ ansible_hostname }}
 {% if qdrouterd_ssl_ca_cert is defined %}
@@ -16,15 +15,20 @@ sslProfile {
     certFile: {{ qdrouterd_ssl_cert }}
     keyFile: {{ qdrouterd_ssl_key }}
 }
-{% endif %}
 
 listener {
     host: {{ qdrouterd_listener_addr }}
-    port: {{ qdrouterd_listener_port }}
+    port: {{ qdrouterd_listener_port_ssl }}
     role: normal
-{% if qdrouterd_require_ssl == 'yes' %}
     sslProfile: {{ ansible_hostname }}
-{% endif %}
+    authenticatePeer: {{ qdrouterd_listener_auth_peer }}
+    saslMechanisms: {{ qdrouterd_listener_sasl_mech }}
+}
+
+listener {
+    host: {{ qdrouterd_listener_addr }}
+    port: {{ qdrouterd_listener_port_plain }}
+    role: normal
     authenticatePeer: {{ qdrouterd_listener_auth_peer }}
     saslMechanisms: {{ qdrouterd_listener_sasl_mech }}
 }
@@ -32,11 +36,17 @@ listener {
 {% if qdrouterd_host_count > '1' %}
 listener {
     host: {{ qdrouterd_irl_addr }}
-    port: {{ qdrouterd_irl_port }}
+    port: {{ qdrouterd_irl_port_ssl }}
     role: inter-router
-{% if qdrouterd_require_ssl == 'yes' %}
     sslProfile: {{ ansible_hostname }}
-{% endif %}
+    authenticatePeer: {{ qdrouterd_irl_auth_peer }}
+    saslMechanisms: {{ qdrouterd_irl_sasl_mech }}
+}
+
+listener {
+    host: {{ qdrouterd_irl_addr }}
+    port: {{ qdrouterd_irl_port_plain }}
+    role: inter-router
     authenticatePeer: {{ qdrouterd_irl_auth_peer }}
     saslMechanisms: {{ qdrouterd_irl_sasl_mech }}
 }
@@ -47,7 +57,7 @@ listener {
 connector {
     host: {{ hostvars[router]['ansible_eth0']['ipv4']['address'] }}
     role: inter-router
-    port: {{ qdrouterd_irl_port }}
+    port: {{ qdrouterd_irl_port_plain }}
 }
 {% endif %}
 {% endfor %}

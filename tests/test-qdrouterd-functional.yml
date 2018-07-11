@@ -65,26 +65,59 @@
         that:
           - "'workerThreads' in qdrouterd_config_contents"
 
-    - name: Get general statistics of qdrouterd
+    - name: Get general statistics of qdrouterd plain
+      command: "qdstat -g -b 0.0.0.0:31460"
+      register: qdrouterd_statistics_plain
+      changed_when: false
+
+    - name: Print qdrouterd_statistics plain
+      debug:
+        var: qdrouterd_statistics_plain
+
+    - name: Get qdrouterd node view using plain
+      command: "qdstat -nv -b 0.0.0.0:31460"
+      register: qdrouterd_nv_plain
+      changed_when: false
+
+    - name: Print qdrouterd_nv using plain
+      debug:
+        var: qdrouterd_nv_plain
+
+    - name: Get general statistics of qdrouterd using ssl
       command: "qdstat -g -b 0.0.0.0:31459"
-      register: qdrouterd_statistics
+      register: qdrouterd_statistics_ssl
       changed_when: false
 
-    - name: Print qdrouterd_statistics
+    - name: Print qdrouterd_statistics using ssl
       debug:
-        var: qdrouterd_statistics
+        var: qdrouterd_statistics_ssl
 
-    - name: Get qdrouterd node view
+    - name: Get qdrouterd node view using ssl
       command: "qdstat -nv -b 0.0.0.0:31459"
-      register: qdrouterd_nv
+      register: qdrouterd_nv_ssl
       changed_when: false
 
-    - name: Print qdrouterd_nv
+    - name: Print qdrouterd_nv using ssl
       debug:
-        var: qdrouterd_nv
+        var: qdrouterd_nv_ssl
 
     - name: Ensure SSL cert/key checksums are identical across the mesh
       assert:
         that:
           - hostvars['container1']['qdrouterd_ssl_cert_checksum'] == hostvars['container2']['qdrouterd_ssl_cert_checksum'] == hostvars['container3']['qdrouterd_ssl_cert_checksum']
           - hostvars['container1']['qdrouterd_ssl_key_checksum'] == hostvars['container2']['qdrouterd_ssl_key_checksum'] == hostvars['container3']['qdrouterd_ssl_key_checksum']
+
+    - name: Create a sasl user
+      shell: "echo secret | saslpasswd2 -c -p -f /var/lib/qdrouterd/qdrouterd.sasldb -u QPID myguest"
+      args:
+        creates: /var/lib/qdrouterd/qdrouterd.sasldb
+
+    - name: Get sasl user list
+      command: "sasldblistusers2 -f /var/lib/qdrouterd/qdrouterd.sasldb"
+      register: sasl_list
+      changed_when: false
+
+    - name: Check for user in sasl list
+      assert:
+        that:
+          - "'myguest@QPID:' in sasl_list.stdout"

@@ -16,6 +16,7 @@
 qdrouterd_ssl_cert: /etc/qpid-dispatch/ssl/qdrouterd.pem
 qdrouterd_ssl_key: /etc/qpid-dispatch/ssl/qdrouterd.key
 qdrouterd_worker_threads: 2
-qdrouterd_require_ssl: no
-qdrouterd_listener_port: 31459
-qdrouterd_irl_port: 31460
+qdrouterd_listener_port_ssl: 31459
+qdrouterd_listener_port_plain: 31460
+qdrouterd_irl_port_ssl: 31461
+qdrouterd_irl_port_plain: 31462

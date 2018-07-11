@@ -14,10 +14,10 @@
 # limitations under the License.
 
 # Setup the host
-- include: common/test-setup-host.yml
+- import_playbook: common/test-setup-host.yml
 
-# Install previous version qdrouterd server
-- include: test-install-qdrouterd.yml
+# Install Qdrouterd server
+- import_playbook: test-install-qdrouterd.yml
 
 # Run functional tests
-- include: test-qdrouterd-functional.yml
+- import_playbook: test-qdrouterd-functional.yml

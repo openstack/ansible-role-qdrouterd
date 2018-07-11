@@ -25,7 +25,7 @@
   apt_repository:
     repo: "{{ qdrouterd_ppa_repo }}"
     update_cache: True
-    codename: xenial
+    codename: "{{ ansible_distribution_release }}"
     state: present
   tags:
     - qdrouterd-rep

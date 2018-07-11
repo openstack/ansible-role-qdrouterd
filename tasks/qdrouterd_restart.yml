@@ -13,7 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- include: qdrouterd_stopped.yml
-- include: qdrouterd_started.yml
-
-
+- import_tasks: qdrouterd_stopped.yml
+- import_tasks: qdrouterd_started.yml

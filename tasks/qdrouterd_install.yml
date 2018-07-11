@@ -13,22 +13,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- include: "qdrouterd_install_{{ ansible_pkg_mgr }}.yml"
+- include_tasks: "qdrouterd_install_{{ ansible_pkg_mgr }}.yml"
   tags:
-    - qdrouterd-apt-packages
-    - qdrouterd-yum-packages
     - qdrouterd_server-install
 
 - name: Reload the systemd daemon
   systemd:
     daemon_reload: yes
   when:
-    - install_qdrouterd  is changed
+    - install_qdrouterd is changed
   tags:
-    - qdrouterd-apt-packages
-    - qdrouterd-yum-packages
     - qdrouterd_server-install
 
-- include: qdrouterd_started.yml
+- import_tasks: qdrouterd_started.yml
   tags:
     - qdrouterd_server-config

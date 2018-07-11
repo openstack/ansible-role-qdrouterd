@@ -26,13 +26,11 @@
   tags:
     - qdrouterd-config
 
-- name: Create the log directory
+- name: Create the lib directory
   file:
     path: "/var/lib/qdrouterd/"
     state: "directory"
-    group: "qdrouterd"
-    owner: "qdrouterd"
-    recurse: true
+    mode: "0755"
   tags:
     - qdrouterd-config
 
@@ -46,6 +44,5 @@
   tags:
     - qdrouterd-config
 
-- include: qdrouterd_restart.yml
-  static: no
+- include_tasks: qdrouterd_restart.yml
   when: qdrouterd_config_changed is changed
