@@ -23,7 +23,7 @@
   systemd:
     daemon_reload: yes
   when:
-    - install_qdrouterd | changed
+    - install_qdrouterd  is changed
   tags:
     - qdrouterd-apt-packages
     - qdrouterd-yum-packages

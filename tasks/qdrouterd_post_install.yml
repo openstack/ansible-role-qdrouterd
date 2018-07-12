@@ -48,4 +48,4 @@
 
 - include: qdrouterd_restart.yml
   static: no
-  when: qdrouterd_config_changed|changed
+  when: qdrouterd_config_changed is changed
