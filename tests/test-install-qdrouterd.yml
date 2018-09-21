@@ -27,5 +27,3 @@
   any_errors_fatal: true
   roles:
     - role: "qdrouterd"
-  vars_files:
-    - test-vars.yml

@@ -26,8 +26,6 @@
             voting: false
         - openstack-ansible-functional-ubuntu-xenial:
             voting: false
-        - openstack-ansible-upgrade-ubuntu-xenial:
-            voting: false
     experimental:
       jobs:
         - openstack-ansible-integrated-deploy-aio
