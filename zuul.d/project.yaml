@@ -22,8 +22,6 @@
         - openstack-ansible-linters
         - openstack-ansible-functional-centos-7:
             voting: false
-        - openstack-ansible-functional-opensuse-423:
-            voting: false
         - openstack-ansible-functional-ubuntu-xenial:
             voting: false
     experimental:
