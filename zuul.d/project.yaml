@@ -21,8 +21,6 @@
       jobs:
         - openstack-ansible-linters
         - openstack-ansible-functional-centos-7
-        - openstack-ansible-functional-opensuse-423:
-            voting: false
         - openstack-ansible-functional-ubuntu-bionic
     experimental:
       jobs:
