@@ -41,8 +41,8 @@ gcc-c++           [platform:rpm]
 git               [platform:rpm]
 libffi-devel      [platform:rpm]
 openssl-devel     [platform:rpm]
-python-devel      [platform:rpm]
-python2-dnf       [platform:fedora]
+python3-devel      [platform:rpm]
+python3-dnf       [platform:fedora]
 
 # For SELinux
 libselinux-python3 [platform:redhat]
