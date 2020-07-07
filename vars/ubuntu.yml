@@ -14,7 +14,7 @@
 # limitations under the License.
 
 qdrouterd_distro_packages:
-  - python-qpid-proton
+  - python3-qpid-proton
   - libsasl2-modules
   - sasl2-bin
   - qdrouterd
