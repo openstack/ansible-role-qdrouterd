@@ -24,8 +24,8 @@
 - name: Setup qpid ppa repository
   apt_repository:
     repo: "{{ qdrouterd_ppa_repo }}"
-    update_cache: True
     codename: "{{ ansible_distribution_release }}"
+    update_cache: False
     state: present
   tags:
     - qdrouterd-rep
@@ -34,6 +34,7 @@
   apt:
     name: "{{ qdrouterd_distro_packages }}"
     state: "{{ qdrouterd_package_state }}"
+    update_cache: True
   register: install_qdrouterd
   tags:
     - qdrouterd-apt-packages
