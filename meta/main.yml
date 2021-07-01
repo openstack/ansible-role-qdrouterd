@@ -17,6 +17,7 @@ galaxy_info:
   description: This role installs and configures the qpid-dispatch-router
   license: Apache
   min_ansible_version: 2.3
+  role_name: qdrouterd
   platforms:
   - name: EL
     versions:

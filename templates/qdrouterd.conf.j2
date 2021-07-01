@@ -55,7 +55,7 @@ listener {
 {% for router in groups['qdrouterd_all'] %}
 {% if inventory_hostname < router %}
 connector {
-    host: {{ hostvars[router]['ansible_eth0']['ipv4']['address'] }}
+    host: {{ hostvars[router]['management_address'] }}
     role: inter-router
     port: {{ qdrouterd_irl_port_plain }}
 }
