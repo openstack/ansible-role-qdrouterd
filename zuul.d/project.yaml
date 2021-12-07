@@ -22,9 +22,6 @@
         - openstack-ansible-linters
         - openstack-ansible-functional-centos-8
         - openstack-ansible-functional-ubuntu-focal
-    experimental:
-      jobs:
-        - openstack-ansible-integrated-deploy-aio
     gate:
       jobs:
         - openstack-ansible-linters
