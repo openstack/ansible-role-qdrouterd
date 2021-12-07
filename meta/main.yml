@@ -24,8 +24,8 @@ galaxy_info:
     - 7
   - name: Ubuntu
     versions:
-    - xenial
     - bionic
+    - focal
   categories:
   - messaging
   - cloud
