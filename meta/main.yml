@@ -19,13 +19,9 @@ galaxy_info:
   min_ansible_version: 2.3
   role_name: qdrouterd
   platforms:
-  - name: EL
-    versions:
-    - 7
   - name: Ubuntu
     versions:
-    - xenial
-    - bionic
+    - focal
   categories:
   - messaging
   - cloud

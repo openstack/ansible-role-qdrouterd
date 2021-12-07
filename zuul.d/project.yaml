@@ -20,10 +20,8 @@
     check:
       jobs:
         - openstack-ansible-linters
-        - openstack-ansible-functional-centos-8
         - openstack-ansible-functional-ubuntu-focal
     gate:
       jobs:
         - openstack-ansible-linters
-        - openstack-ansible-functional-centos-8
         - openstack-ansible-functional-ubuntu-focal
