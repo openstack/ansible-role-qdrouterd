@@ -14,14 +14,13 @@
 
 - project:
     templates:
+      - openstack-ansible-linters-jobs
       - check-requirements
       - publish-openstack-docs-pti
       - build-release-notes-jobs-python3
     check:
       jobs:
-        - openstack-ansible-linters
         - openstack-ansible-functional-ubuntu-focal
     gate:
       jobs:
-        - openstack-ansible-linters
         - openstack-ansible-functional-ubuntu-focal
