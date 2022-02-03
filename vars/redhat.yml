@@ -15,7 +15,7 @@
 
 qdrouterd_distro_packages:
   - openssl
-  - "{{ ansible_distribution_major_version is version('8', '<') | ternary('python-qpid-proton', 'python3-qpid-proton') }}"
+  - python3-qpid-proton
   - cyrus-sasl-lib
   - cyrus-sasl-plain
   - cyrus-sasl-md5
