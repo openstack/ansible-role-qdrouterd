@@ -16,15 +16,23 @@ galaxy_info:
   author: Andy Smith
   description: This role installs and configures the qpid-dispatch-router
   license: Apache
-  min_ansible_version: 2.3
+  min_ansible_version: "2.10"
+  namespace: openstack
   role_name: qdrouterd
   platforms:
-  - name: Ubuntu
-    versions:
-    - focal
-  categories:
-  - messaging
-  - cloud
-  - openstack
+    - name: Debian
+      versions:
+        - bullseye
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+    - name: EL
+      versions:
+        - "9"
+  galaxy_tags:
+    - messaging
+    - cloud
+    - openstack
 
 dependencies: []

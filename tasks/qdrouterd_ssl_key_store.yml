@@ -31,7 +31,7 @@
 
 - name: Register a fact for the cert and key
   set_fact:
-     qdrouterd_ssl_cert_fact: "{{ _qdrouterd_ssl_cert.content }}"
-     qdrouterd_ssl_key_fact: "{{ _qdrouterd_ssl_key.content }}"
+    qdrouterd_ssl_cert_fact: "{{ _qdrouterd_ssl_cert.content }}"
+    qdrouterd_ssl_key_fact: "{{ _qdrouterd_ssl_key.content }}"
   tags:
     - qdrouterd-ssl

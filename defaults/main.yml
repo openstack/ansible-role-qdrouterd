@@ -24,10 +24,10 @@ qdrouterd_host_group: "qdrouterd_all"
 qdrouterd_service_name: "{{ _qdrouterd_service_name }}"
 qdrouterd_etc_conf_path: "{{ _qdrouterd_etc_conf_path }}"
 qdrouterd_etc_conf_file: "{{ _qdrouterd_etc_conf_file }}"
-qdrouterd_log_file:  "/var/log/qdrouterd/qdrouterd.log"
+qdrouterd_log_file: "/var/log/qdrouterd/qdrouterd.log"
 
 # Qdrouterd router config
-qdrouterd_host_count: "{{ groups['qdrouterd_all'] | length}}"
+qdrouterd_host_count: "{{ groups['qdrouterd_all'] | length }}"
 qdrouterd_mode: "{% if qdrouterd_host_count == '1' %}standalone{% else %}interior{% endif %}"
 qdrouterd_listener_addr: 0.0.0.0
 qdrouterd_listener_port_ssl: 31459
@@ -48,7 +48,7 @@ qdrouterd_log_enable: "trace+"
 # Qdrouterd SSL support
 qdrouterd_ssl_cert: "{{ qdrouterd_etc_conf_path }}/ssl/qdrouterd.pem"
 qdrouterd_ssl_key: "{{ qdrouterd_etc_conf_path }}/ssl/qdrouterd.key"
-#qdrouterd_ssl_ca_cert: "{{ qdrouterd_etc_conf_path }}/ssl/qdrouterd-ca.pem"
+# qdrouterd_ssl_ca_cert: "{{ qdrouterd_etc_conf_path }}/ssl/qdrouterd-ca.pem"
 
 # Set qdrouterd_ssl_sefl_signed_regen to true if you want to generate a new
 # SSL certificate for Qdrouterd when this playbook runs. You can also change
@@ -58,6 +58,6 @@ qdrouterd_ssl_self_signed_subject: "/C=US/ST=Massachusetts/L=Boston/O=IT/CN={{ a
 
 # Define user-provided SSL certificates in:
 # /etc/openstack_deploy/user_variables.yml
-#qdrouterd_user_ssl_cert: <path to cert on ansible deployment host>
-#qdrouterd_user_ssl_key: <path to cert on ansible deployment host>
-#qdrouterd_user_ssl_ca_cert: <path to cert on ansible deployment host>
+# qdrouterd_user_ssl_cert: <path to cert on ansible deployment host>
+# qdrouterd_user_ssl_key: <path to cert on ansible deployment host>
+# qdrouterd_user_ssl_ca_cert: <path to cert on ansible deployment host>

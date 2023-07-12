@@ -44,5 +44,6 @@
   tags:
     - qdrouterd-config
 
-- include_tasks: qdrouterd_restart.yml
+- name: Including qdrouterd_restart tasks
+  include_tasks: qdrouterd_restart.yml
   when: qdrouterd_config_changed is changed

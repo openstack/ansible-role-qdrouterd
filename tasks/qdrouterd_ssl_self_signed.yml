@@ -15,11 +15,14 @@
 
 # We create the self-signed SSL certificate and key only on the first
 # Qdrouterd container.
-- include_tasks: qdrouterd_ssl_key_create.yml
+- name: Including qdrouterd_ssl_key_create tasks
+  include_tasks: qdrouterd_ssl_key_create.yml
   when: inventory_hostname == groups[qdrouterd_host_group][0]
 
-- include_tasks: qdrouterd_ssl_key_store.yml
+- name: Including qdrouterd_ssl_key_store tasks
+  include_tasks: qdrouterd_ssl_key_store.yml
   when: inventory_hostname == groups[qdrouterd_host_group][0]
 
-- include_tasks: qdrouterd_ssl_key_distribute.yml
+- name: Including qdrouterd_ssl_key_distribute tasks
+  include_tasks: qdrouterd_ssl_key_distribute.yml
   when: inventory_hostname != groups[qdrouterd_host_group][0]
